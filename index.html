@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Notas AH</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link para o CSS -->
+</head>
+<body>
+
+    <header>
+        <h1>CONSULTA NOTAS ATIVIDADES HÍBRIDAS (AH)<br>PROFESSORA GIOVANNA LEPORE - FÍSICA</h1>
+    </header>
+
+    <form id="nota-form">
+        <label for="turma">Turma:</label>
+        <select id="turma">
+            <option value="">Selecionar uma turma</option> <!-- Opção padrão -->
+            <option value="9EF">9EF</option>
+            <option value="1EM">1EM</option>
+            <option value="2EM">2EM</option>
+            <option value="3EM">3EM</option>
+        </select>
+    
+        <label for="nome">Nome:</label>
+        <select id="nome">
+            <option value="">Selecionar um nome</option> <!-- Opção padrão para nome -->
+        </select>
+    
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" placeholder="Digite a matrícula">
+    
+        <button type="submit">Consultar Notas</button>
+    </form>
+    
+
+    <div id="resultado"></div>
+
+    <footer>
+        PROFESSORA GIOVANNA LEPORE
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
