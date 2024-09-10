@@ -23,6 +23,9 @@ header {
 
 h1 {
     margin: 0;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff6f00; /* Um tom vibrante de laranja */
 }
 
 /* Estilo para o formulário */
@@ -71,7 +74,7 @@ button:hover {
 /* Estilo para o resultado */
 #resultado {
     background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
+    padding: 10px;
     color: #fff;
     margin-top: 20px;
     border-radius: 10px;
