@@ -16,7 +16,7 @@ header {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.7);
     color: #FFA500; /* Laranja */
-    font-size: 1.8em;
+    font-size: 0.9em; /* Reduzido de 1.8em para 0.9em */
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
@@ -26,6 +26,7 @@ h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #ff6f00; /* Um tom vibrante de laranja */
+    font-size: 1.2em; /* Reduzido de 1.8em para 1.2em */
 }
 
 /* Estilo para o formulário */
@@ -39,7 +40,7 @@ form {
 }
 
 label {
-    font-size: 1.2em;
+    font-size: 0.6em; /* Reduzido de 1.2em para 0.6em */
     color: #FFA500;
 }
 
@@ -48,7 +49,7 @@ input, select {
     box-sizing: border-box;
     padding: 15px;
     margin: 10px 0 20px 0;
-    font-size: 1em;
+    font-size: 0.6em; /* Reduzido de 1em para 0.6em */
     border: none;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.8);
@@ -62,7 +63,7 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 0.6em; /* Reduzido de 1.2em para 0.6em */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -79,17 +80,17 @@ button:hover {
     margin-top: 20px;
     border-radius: 10px;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 0.6em; /* Reduzido de 1.2em para 0.6em */
 }
 
 /* Estilo para atividades com letra menor */
 .atividade {
-    font-size: 1em;
+    font-size: 0.6em; /* Reduzido de 1em para 0.6em */
 }
 
 /* Estilo para nota final com letra maior */
 .nota-final {
-    font-size: 1.4em;
+    font-size: 1em; /* Reduzido de 1.4em para 1em */
     font-weight: bold;
 }
 
@@ -99,6 +100,6 @@ footer {
     color: #FFA500;
     text-align: center;
     padding: 15px;
-    font-size: 1.2em;
+    font-size: 0.6em; /* Reduzido de 1.2em para 0.6em */
     margin-top: auto;
 }
