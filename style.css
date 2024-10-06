@@ -85,9 +85,12 @@ button:hover {
     font-size: 1em; /* Diminui o tamanho do texto do resultado */
 }
 
-/* Estilo para atividades com letra menor */
-.atividade {
+/* Estilo para o texto das atividades com margem */
+.atividade-texto {
+    text-align: left;  /* Alinhado à esquerda */
     font-size: 1em;
+    margin-left: 400px;  /* Adiciona margem à esquerda */
+    margin-right: 400px; /* Adiciona margem à direita */
 }
 
 /* Estilo para nota final com letra maior */
@@ -106,7 +109,6 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave para destaque */
     text-align: center; /* Centraliza o texto */
 }
-
 
 /* Rodapé */
 footer {
