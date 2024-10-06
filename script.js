@@ -20,7 +20,7 @@ document.getElementById('nota-form').addEventListener('submit', function(event) 
 
 function carregarNomes(turma) {
     const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q'; // API Key
-    const sheetId = '1MYzTgyZQcO8iJfEVtAMoeJGrMMzLzIOA1E5M-5gu5mY'; // ID da planilha
+    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk'; // ID da planilha
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${turma}!A:V?key=${apiKey}`;
 
     fetch(url)
@@ -36,8 +36,9 @@ function carregarNomes(turma) {
             const selectNome = document.getElementById('nome');
             selectNome.innerHTML = '<option value="">Selecione um nome</option>';
 
-            linhas.forEach(linha => {
-                if (linha.length >= 3) { 
+            // Ignorar a primeira linha (cabeçalho) e garantir que a célula "Nome" seja ignorada
+            linhas.forEach((linha, index) => {
+                if (index !== 0 && linha.length >= 3 && linha[2].toLowerCase() !== 'nome') {
                     const nome = linha[2]; 
                     const matricula = linha[1];
                     if (nome && matricula) {
@@ -57,7 +58,7 @@ function carregarNomes(turma) {
 
 function buscarNotas(turma, nome, matricula) {
     const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q'; // API Key
-    const sheetId = '1MYzTgyZQcO8iJfEVtAMoeJGrMMzLzIOA1E5M-5gu5mY'; // ID da planilha
+    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk'; // ID da planilha
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${turma}!A:V?key=${apiKey}`;
 
     fetch(url)
@@ -98,7 +99,7 @@ function buscarNotas(turma, nome, matricula) {
 
 function buscarTarefas(turma, notas, ultimaNota, resultadoHTML) {
     const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q'; // API Key
-    const sheetId = '1MYzTgyZQcO8iJfEVtAMoeJGrMMzLzIOA1E5M-5gu5mY'; // ID da planilha
+    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk'; // ID da planilha
 
     const paginasTarefas = {
         "9EF": "9EF TAREFAS",
@@ -128,7 +129,7 @@ function buscarTarefas(turma, notas, ultimaNota, resultadoHTML) {
                     const explicacaoAtividade = linha[1];
                     const nota = notas[index] ? notas[index] : "Sem nota";
 
-                    resultadoHTML += `<p><strong>${descricaoAtividade}:</strong> ${explicacaoAtividade} - Nota: <strong>${nota}</strong></p>`;
+                    resultadoHTML += `<p class="atividade-texto"><strong>${descricaoAtividade}:</strong> ${explicacaoAtividade} - Nota: <strong>${nota}</strong></p>`;
                 });
             } else {
                 resultadoHTML += "<p>Nenhuma tarefa encontrada.</p>";
