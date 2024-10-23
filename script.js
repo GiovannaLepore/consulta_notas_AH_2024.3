@@ -19,8 +19,8 @@ document.getElementById('nota-form').addEventListener('submit', function(event) 
 });
 
 function carregarNomes(turma) {
-    const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q'; // API Key
-    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk'; // ID da planilha
+    const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q'; 
+    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk'; 
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${turma}!A:V?key=${apiKey}`;
 
     fetch(url)
@@ -36,7 +36,6 @@ function carregarNomes(turma) {
             const selectNome = document.getElementById('nome');
             selectNome.innerHTML = '<option value="">Selecione um nome</option>';
 
-            // Ignorar a primeira linha (cabeçalho) e garantir que a célula "Nome" seja ignorada
             linhas.forEach((linha, index) => {
                 if (index !== 0 && linha.length >= 3 && linha[2].toLowerCase() !== 'nome') {
                     const nome = linha[2]; 
@@ -57,9 +56,20 @@ function carregarNomes(turma) {
 }
 
 function buscarNotas(turma, nome, matricula) {
-    const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q'; // API Key
-    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk'; // ID da planilha
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${turma}!A:V?key=${apiKey}`;
+    const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q'; 
+    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk'; 
+
+    // Ajuste o intervalo de colunas com base na turma
+    let intervaloColunas;
+    if (turma === "3EM") {
+        intervaloColunas = "A:Y";  // Para 3EM até a coluna Y
+    } else if (turma === "1EM" || turma === "2EM") {
+        intervaloColunas = "A:Q";  // Para 1EM e 2EM até a coluna Q
+    } else if (turma === "9EF") {
+        intervaloColunas = "A:P";  // Para 9EF até a coluna P
+    }
+
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${turma}!${intervaloColunas}?key=${apiKey}`;
 
     fetch(url)
         .then(response => response.json())
@@ -74,11 +84,17 @@ function buscarNotas(turma, nome, matricula) {
                     const nomeColuna = linha[2] ? linha[2].trim().toLowerCase() : null;
 
                     if (matriculaColuna === matricula && nomeColuna === nome.toLowerCase()) {
-                        const notas = linha.slice(5, 22).filter(nota => nota !== ""); // Ignora notas vazias
-                        const penultimaNota = notas.splice(notas.length - 2, 1); 
-                        const ultimaNota = notas.pop(); // A última nota é a Nota Final AH
+                        let ultimaNota;
+                        if (turma === "9EF") {
+                            ultimaNota = linha[15];  // Coluna P (índice 15) para 9EF
+                        } else if (turma === "1EM" || turma === "2EM") {
+                            ultimaNota = linha[16];  // Coluna Q (índice 16) para 1EM e 2EM
+                        } else if (turma === "3EM") {
+                            ultimaNota = linha[24];  // Coluna Y (índice 24) para 3EM
+                        }
 
-                        // Exibe as atividades e a Nota Final AH
+                        const notas = linha.slice(5, linha.length).filter(nota => nota !== "");
+
                         buscarTarefas(turma, notas, ultimaNota, resultadoHTML);
                         encontrou = true;
                     }
@@ -98,8 +114,8 @@ function buscarNotas(turma, nome, matricula) {
 }
 
 function buscarTarefas(turma, notas, ultimaNota, resultadoHTML) {
-    const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q'; // API Key
-    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk'; // ID da planilha
+    const apiKey = 'AIzaSyCyMk8oxOqLk8TZQMM0L5QRjXswyz9lq-Q';
+    const sheetId = '1CfVpeZfa8aM_kv8uoO_iCbHN-Bz60u7TTQZTeJnfurk';
 
     const paginasTarefas = {
         "9EF": "9EF TAREFAS",
@@ -123,7 +139,6 @@ function buscarTarefas(turma, notas, ultimaNota, resultadoHTML) {
             resultadoHTML += "<h3>Atividades:</h3>";
 
             if (linhas && linhas.length > 1) {
-                // Exibe a explicação de cada atividade com sua respectiva nota em negrito
                 linhas.slice(1).forEach((linha, index) => {
                     const descricaoAtividade = linha[0];
                     const explicacaoAtividade = linha[1];
