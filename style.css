@@ -16,15 +16,15 @@ header {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.7);
     color: #FFA500; /* Laranja */
-    font-size: 1.5em; /* Diminui o tamanho do título */
+    font-size: 1.5em;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .subtitulo {
-    font-size: 0.5em !important; /* Tamanho bem menor */
-    font-weight: normal !important; /* Remove o negrito */
-    color: #FFA500 !important; /* Mantém a cor laranja */
+    font-size: 0.5em !important;
+    font-weight: normal !important;
+    color: #FFA500 !important;
 }
 
 h1 {
@@ -82,15 +82,17 @@ button:hover {
     margin-top: 20px;
     border-radius: 10px;
     text-align: center;
-    font-size: 1em; /* Diminui o tamanho do texto do resultado */
+    font-size: 1em;
 }
 
-/* Estilo para o texto das atividades com margem */
+/* Estilo para o texto das atividades */
 .atividade-texto {
-    text-align: left;  /* Alinhado à esquerda */
+    text-align: left;
     font-size: 1em;
-    margin-left: 400px;  /* Adiciona margem à esquerda */
-    margin-right: 400px; /* Adiciona margem à direita */
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 90%;
+    box-sizing: border-box;
 }
 
 /* Estilo para nota final com letra maior */
@@ -100,14 +102,14 @@ button:hover {
 }
 
 #mensagem-final {
-    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco com transparência */
-    color: #000; /* Texto preto */
-    padding: 20px; /* Espaçamento interno */
-    margin: 20px auto; /* Margem superior/inferior e centralização horizontal */
-    max-width: 800px; /* Largura máxima da mensagem */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave para destaque */
-    text-align: center; /* Centraliza o texto */
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 /* Rodapé */
@@ -118,4 +120,24 @@ footer {
     padding: 15px;
     font-size: 1.2em;
     margin-top: auto;
+}
+
+/* Ajustes para telas menores */
+@media screen and (max-width: 768px) {
+    .atividade-texto {
+        margin: 10px auto;
+        font-size: 0.9em;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    form {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    #resultado {
+        padding: 15px;
+        font-size: 0.9em;
+    }
 }
